@@ -1,0 +1,2000 @@
+seq: chr22 min: 7404379
+minimizer:
+ min: 4360
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 519932
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 511795
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 79823
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 36567
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 62248
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 65007
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 327968
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 212288
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 52227
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 21765
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 23573
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 89125
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 38665
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 38677
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 378224
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 89125
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 38661
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 87813
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175050
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 87813
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 87813
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 704175
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 329056
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 394592
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 394592
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 21591
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 345460
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 381277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 357463
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 357463
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 357463
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 284421
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 89125
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 38661
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 356438
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 88085
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22273
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22278
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 159530
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 421975
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 21888
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 4613
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 438139
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 352402
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 37381
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 87813
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 437194
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 175978
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 86036
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 20997
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 22277
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175914
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 357463
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 357463
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 357463
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 238254
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 342192
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 78791
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 52958
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 208968
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 3265
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 70912
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 79941
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 58436
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 462404
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 251662
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 234063
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 327215
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 260286
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 194950
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 124059
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 194581
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 175937
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 255147
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 50325
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 153049
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 42538
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 272650
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 253264
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 90685
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 56750
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 440722
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 489525
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 155102
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 9693
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 523711
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 434200
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 9888
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 521489
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 114771
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 5367
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 193038
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 74059
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 44306
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 97852
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 199946
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 249674
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 173200
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 147818
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 57301
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 3581
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 261364
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 110092
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 321643
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 234069
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 30377
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 195412
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 522884
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 9529
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 609867
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 307541
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 87302
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 28142
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 506338
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 253812
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 134777
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 170532
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 42633
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 392299
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 699077
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 87370
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 148613
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 299297
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 491808
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 18449
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 17565
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 161173
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 124458
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 173177
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 436106
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 435879
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 387690
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 96922
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 306465
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 385544
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 143229
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 122485
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 42633
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 366553
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 390723
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 50518
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 128682
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 47033
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 489746
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 296992
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 25757
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 103029
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 414374
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 150932
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 140505
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 71074
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 148549
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 768448
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 456575
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 132673
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 25629
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 120407
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 357952
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 264809
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 42649
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 386650
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 417381
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 170274
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 141722
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 170406
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 370277
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 386650
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 170274
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 411786
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 141722
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 420254
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 348233
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 421333
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 137638
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 358806
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 173256
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 205201
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 411226
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 104081
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 95578
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 350762
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 174250
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 174951
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 610913
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 353609
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 120213
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 381397
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 170406
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 386649
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 304712
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 170274
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 113079
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 156089
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 22680
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 89349
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 365655
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 120165
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 266709
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 192402
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 186642
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 281446
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 186777
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 370329
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 350554
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 419669
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 87449
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 284006
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 366917
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 420753
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 104738
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 297028
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 113591
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 371227
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 370329
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 489878
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 139537
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 113591
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 371227
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 370329
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 489878
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 139659
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 137402
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 119485
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 96432
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 298781
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 227330
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 1703
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 344090
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 174693
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 103082
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 358841
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 370577
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 189801
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 388281
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 162519
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 84473
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 375440
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 140379
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 60194
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 277192
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 628060
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 349982
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 125319
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 379749
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 164894
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 31018
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 141911
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 35477
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 491260
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 77499
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 309997
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 333397
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 174699
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 351858
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 157098
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 371270
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 358766
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 305629
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 34965
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 491126
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 412466
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 283084
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 191396
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 632549
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 104030
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 417402
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 379365
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 302248
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 81480
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 173945
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 141943
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 164394
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 60968
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 81611
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 648476
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 148566
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 71063
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 353767
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 499346
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 162449
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 293781
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 189865
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 35477
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 148010
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 58660
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 69202
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 151940
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 453092
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 103502
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 386286
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 234129
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 80545
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 185678
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 116298
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 103077
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 35477
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 92708
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 285321
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 154436
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 108438
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 174185
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 351354
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 178770
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 286073
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 386129
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 495943
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 130094
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 11554
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 125341
+ load: 0
+ strand: 0
+
+minimizer:
+ min: 339772
+ load: 0
+ strand: 1
+
+minimizer:
+ min: 246535
+ load: 0
+ strand: 0

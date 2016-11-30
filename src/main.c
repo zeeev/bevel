@@ -65,7 +65,7 @@ static inline uint64_t hash64(uint64_t key, uint64_t mask)
  */
 void sketch(const char * name, const char * seq,
 	int len, int k, int w, uint32_t rid){
-  uint64_t shift1 = 2 * (k - 1), mask = (1ULL << 2*k);
+  uint64_t shift1 = 2 * (k - 1), mask = (1ULL << 2*k)-1;
 
 	struct kp kmers;
 
@@ -116,6 +116,9 @@ void sketch(const char * name, const char * seq,
 	}
 	printf("seq: %s min: %i\n", name, n);
 	for(i = 0; i < 10; i++){
+		print_mr(&buffer[i]);
+	}
+	for(i = n -1; i > n-1000; i--){
 		print_mr(&buffer[i]);
 	}
 }
