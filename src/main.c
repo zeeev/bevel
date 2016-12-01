@@ -9,9 +9,7 @@ struct kp{
 };
 
 struct mr{
-	uint64_t   min;
-	uint32_t  load;
-	uint8_t strand;
+	uint64_t min, load;
 };
 
 unsigned char seq_nt4_table[256] = {
@@ -37,8 +35,9 @@ unsigned char seq_nt4_table[256] = {
 static inline print_mr(struct mr * m){
 	printf("minimizer:\n");
 	printf(" min: %" PRId64 "\n", m->min);
-	printf(" load: %i\n", m->load);
-	printf(" strand: %i\n", m->strand);
+	printf(" strand: %i\n", m->load & 1);
+	printf(" rid: %i\n", (m->load >> 32));
+	printf(" pos: %i\n", (m->load << 32));
 	printf("\n");
 }
 
@@ -64,7 +63,9 @@ static inline uint64_t hash64(uint64_t key, uint64_t mask)
  * @param rid    seq index
  */
 void sketch(const char * name, const char * seq,
-	int len, int k, int w, uint32_t rid){
+									int len, int k, int w,
+									uint32_t rid){
+
   uint64_t shift1 = 2 * (k - 1), mask = (1ULL << 2*k)-1;
 
 	struct kp kmers;
@@ -83,7 +84,6 @@ void sketch(const char * name, const char * seq,
 
 	for(;i < s; i++){
 		buffer[i].min     = UINT64_MAX;
-		buffer[i].strand  = 0         ;
 		buffer[i].load    = 0         ;
 	}
 
@@ -110,7 +110,7 @@ void sketch(const char * name, const char * seq,
 			strand = wa > cr ? 0 : 1;
 			if(buffer[n].min > kmers.km[strand]){
 				buffer[n].min    = kmers.km[strand];
-				buffer[n].strand = strand;
+				buffer[n].load = (uint64_t)rid<<32 | (uint32_t)i<<1 | strand;
 			}
 		}
 	}
@@ -118,7 +118,7 @@ void sketch(const char * name, const char * seq,
 	for(i = 0; i < 10; i++){
 		print_mr(&buffer[i]);
 	}
-	for(i = n -1; i > n-1000; i--){
+	for(i = n -1; i > n-10; i--){
 		print_mr(&buffer[i]);
 	}
 }
@@ -136,8 +136,11 @@ int main(int argc, char *argv[])
  }
   fp = gzopen(argv[1], "r"); // STEP 2: open the file handler
   seq = kseq_init(fp); // STEP 3: initialize seq
+	uint32_t rid = 0;
+
   while ((l = kseq_read(seq)) >= 0) { // STEP 4: read sequence
-		sketch(seq->name.s, seq->seq.s, seq->seq.l, 10, 5, 8);
+		sketch(seq->name.s, seq->seq.s, seq->seq.l, 10, 5, rid);
+		rid++;
 	}
   kseq_destroy(seq); // STEP 5: destroy seq
   gzclose(fp); // STEP 6: close the file handler
