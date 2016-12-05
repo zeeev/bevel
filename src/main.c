@@ -128,6 +128,7 @@ void sketch(const char * name, const char * seq,
 		(*data)[i + (*datumSize)].min  = buffer[i].min;
 	}
 	*datumSize += n;
+	free(buffer);
 }
 
 KSEQ_INIT(gzFile, gzread)
