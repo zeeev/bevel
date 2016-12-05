@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
 	uint32_t rid = 0;
 
   while ((l = kseq_read(seq)) >= 0) { // STEP 4: read sequence
-		sketch(seq->name.s, seq->seq.s, seq->seq.l, 10, 10, rid, &kmers_and_positions, &nMinimizers);
+		sketch(seq->name.s, seq->seq.s, seq->seq.l, 17, 50, rid, &kmers_and_positions, &nMinimizers);
 		rid++;
 	}
   kseq_destroy(seq); // STEP 5: destroy seq
