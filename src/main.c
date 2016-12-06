@@ -98,27 +98,34 @@ void sketch(const char * name, const char * seq,
 		buffer[i].load    = 0         ;
 	}
 
-  for(i = 0; i < len; i++){
-		int c = seq_nt4_table[(uint8_t)seq[i]];
-		if(c < 4){
-			kmers.km[0] = (kmers.km[0] << 2  | c ) & mask        ;
-			kmers.km[1] = (kmers.km[1] >> 2) | (3ULL^c) << shift1;
-			j++;
-		}
-		if(j >= k && i >= l){
-			if(kmers.km[0] == kmers.km[1]) continue;
-			wa = hash64(kmers.km[0], mask);
-			cr = hash64(kmers.km[1], mask);
-			strand = wa > cr ? 0 : 1;
-			if(buffer[n].min > kmers.km[strand]){
-				buffer[n].min  = kmers.km[strand];
-				buffer[n].load = (uint64_t)rid<<32 | (uint32_t)i<<1 | strand;
-			}
-			j = 0;
-			l = i + w;
-			n += 1;
-		}
-	}
+	i = 0;
+
+   for(; i < len; i++){
+ 		int c = seq_nt4_table[(uint8_t)seq[i]];
+ 		if(c < 4){
+ 			kmers.km[0] = (kmers.km[0] << 2  | c ) & mask        ;
+ 			kmers.km[1] = (kmers.km[1] >> 2) | (3ULL^c) << shift1;
+ 			if(kmers.km[0] == kmers.km[1]) continue;
+ 			l++;
+ 		}
+ 		else{
+ 			l = 0;
+ 		}
+ 		if((l % w) == 0 && l > k){
+ 			n++;
+ 		}
+ 		if(l >= k){
+ 			assert(n < s);
+ 			wa = hash64(kmers.km[0], mask);
+ 			cr = hash64(kmers.km[1], mask);
+  			strand = wa > cr ? 0 : 1;
+  			if(buffer[n].min > kmers.km[strand]){
+  				buffer[n].min    = kmers.km[strand];
+ 					buffer[n].load = (uint64_t)rid<<32 | (uint32_t)i<<1 | strand;
+  			}
+  		}
+  	}
+
 	printf("seq: %s has %i minimizers\n", name, n );
 
 	*data = (struct mr *) realloc(*data, (n + (*datumSize)) * sizeof(struct mr));
