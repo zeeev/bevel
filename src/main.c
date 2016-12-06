@@ -31,6 +31,35 @@ unsigned char seq_nt4_table[256] = {
 	4, 4, 4, 4,  4, 4, 4, 4,  4, 4, 4, 4,  4, 4, 4, 4
 };
 
+#define swap(t, a, b) {t tmp = a; a = b; b = tmp; }
+
+static void rad_sort_u(struct mr ** data,
+		uint32_t from,
+		uint32_t to,
+		uint64_t bit){
+
+	if (!bit || to < from + 1) return;
+
+	uint32_t ll = from,  rr = to ;
+	while(1){
+		while(ll < rr && !((*data)[ll].min & bit)) ll++;
+		while(ll < rr && ((*data)[rr].min & bit )) rr--;
+		if(ll >= rr) break;
+		swap(struct mr, (*data)[ll], (*data)[rr]);
+	}
+	if (!(bit & (*data)[ll].min) && ll < to) ll++;
+	bit >>= 1;
+
+	rad_sort_u(data, from, ll, bit);
+	rad_sort_u(data, ll, to, bit);
+}
+
+void radix_sort_mr(struct mr ** data, uint64_t len){
+	uint64_t bit = 1;
+	bit <<= 63;
+	rad_sort_u(data, 0, len - 1, bit);
+}
+
 
 static inline print_mr(struct mr * m){
 	printf("minimizer:\n");
@@ -161,6 +190,8 @@ int main(int argc, char *argv[])
 		sketch(seq->name.s, seq->seq.s, seq->seq.l, 17, 50, rid, &kmers_and_positions, &nMinimizers);
 		rid++;
 	}
+radix_sort_mr(&kmers_and_positions, nMinimizers);
+
   kseq_destroy(seq); // STEP 5: destroy seq
   gzclose(fp); // STEP 6: close the file handler
   return 0;
