@@ -196,7 +196,7 @@ KSEQ_INIT(gzFile, gzread)
  * @return      pointer to the minimizers, and the number of minimizers
  */
 
-int fileSketch(struct ns * contain, char * filename)
+int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 	{
     printf("INFO: Sketching minimizers from file: %s\n", filename);
 
@@ -211,10 +211,10 @@ int fileSketch(struct ns * contain, char * filename)
 		uint32_t rid = 0;
 
 	  while ((l = kseq_read(seq)) >= 0) { // STEP 4: read sequence
-			sketch(seq->name.s, seq->seq.s, seq->seq.l, 17, 50, rid, &contain->data, &contain->length);
+			sketch(seq->name.s, seq->seq.s, seq->seq.l, ksize, wsize, rid, &contain->data, &contain->length);
 			rid++;
 		}
-printf(" N  out %" PRIu64  " minimizers \n",  contain->length);
+
 
 		radix_sort_mr(&contain->data, contain->length);
 

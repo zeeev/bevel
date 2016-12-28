@@ -2,8 +2,14 @@
 #include <unistd.h>
 #include "index.h"
 
+struct opts{
+	int dump;
+	int window;
+	int ksize;
+}globalOpts;
 
-int loadOrBuild(struct ns * mins, char * filename, int dump){
+
+int loadOrBuild(struct ns * mins, char * filename){
 	char db[strlen(filename)+5];
 	strcpy(db, filename);
 	strcat(db, ".midx");
@@ -12,8 +18,8 @@ int loadOrBuild(struct ns * mins, char * filename, int dump){
 				readDB(mins, filename);
 	}
 	else{
-		fileSketch(mins, filename);
-		if(dump){
+		fileSketch(mins, filename, globalOpts.ksize, globalOpts.window);
+		if(globalOpts.dump){
 			writeDB(mins, filename);
 		}
 	}
@@ -22,15 +28,33 @@ int loadOrBuild(struct ns * mins, char * filename, int dump){
 int main(int argc, char *argv[])
 {
 
-	int dump = 1; int c;
+	globalOpts.dump   =  0 ;
+	globalOpts.window = 100;
+	globalOpts.ksize  = 17 ;
+
+ int c;
 
 	static char usage[] = "usage: %s [options] <target.fa> <query.fa> <query.fa ... >\n";
 
-	while ((c = getopt(argc, argv, "dh")) != -1){
+	while ((c = getopt(argc, argv, "dhw:k:")) != -1){
 				switch (c) {
+					case 'k':
+					{
+						globalOpts.ksize =  atoi(optarg);
+						if(globalOpts.ksize > 32){
+							printf("\nFATAL: bevel only supports kmers up to 32 bases\n");
+							return 1;
+						}
+						break;
+					}
+					case 'w':
+					{
+						globalOpts.window = atoi(optarg);
+						break;
+					}
 					case 'd':
 					{
-						dump = 0;
+						globalOpts.dump = 1;
 						break;
 					}
 					case 'h':
@@ -51,7 +75,7 @@ int main(int argc, char *argv[])
 
 	for (; optind < argc; optind++){
 		struct ns qDB;
-		loadOrBuild(&qDB, argv[optind], dump);
+		loadOrBuild(&qDB, argv[optind]);
 	}
 
   return 0;
