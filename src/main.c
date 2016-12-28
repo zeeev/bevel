@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 		loadOrBuild(&qDB, argv[optind]);
 	}
 
-	search(&tDB, &qDB);
+	search(&qDB, &tDB);
 
   return 0;
 }
