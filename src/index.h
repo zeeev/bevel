@@ -21,6 +21,13 @@ struct mr{
 	uint64_t min, load;
 };
 
+struct ns{
+  char ** names;
+  struct mr * data;
+  uint32_t length;
+};
+
+
 struct offsetInfo{
 	uint32_t arrayOffset;
 	uint32_t count;
@@ -167,7 +174,7 @@ void sketch(const char * name, const char * seq,
   		}
   	}
 
-	printf("seq: %s has %i minimizers\n", name, n );
+	printf("INFO: Seq %s has %i minimizers\n", name, n );
 
 	*data = (struct mr *) realloc(*data, (n + (*datumSize)) * sizeof(struct mr));
 
@@ -175,7 +182,10 @@ void sketch(const char * name, const char * seq,
 		(*data)[i + (*datumSize)].load = buffer[i].load;
 		(*data)[i + (*datumSize)].min  = buffer[i].min;
 	}
+
 	*datumSize += n;
+printf(" N %" PRIu64  " minimizers \n",  *datumSize);
+
 	free(buffer);
 }
 
@@ -186,10 +196,11 @@ KSEQ_INIT(gzFile, gzread)
  * @return      pointer to the minimizers, and the number of minimizers
  */
 
-int fileSketch(struct mr ** kmers_and_positions, char * filename, int * nmin)
+int fileSketch(struct ns * contain, char * filename)
 	{
-		int nMinimizers = 0;
-		*kmers_and_positions = (struct mr*)malloc(sizeof(struct mr));
+    printf("INFO: Sketching minimizers from file: %s\n", filename);
+
+		contain->data  = (struct mr*)malloc(sizeof(struct mr));
 
 	  gzFile fp;
 	  kseq_t *seq;
@@ -200,15 +211,18 @@ int fileSketch(struct mr ** kmers_and_positions, char * filename, int * nmin)
 		uint32_t rid = 0;
 
 	  while ((l = kseq_read(seq)) >= 0) { // STEP 4: read sequence
-			sketch(seq->name.s, seq->seq.s, seq->seq.l, 17, 50, rid, kmers_and_positions, &nMinimizers);
+			sketch(seq->name.s, seq->seq.s, seq->seq.l, 17, 50, rid, &contain->data, &contain->length);
 			rid++;
 		}
-		radix_sort_mr(kmers_and_positions, nMinimizers);
+printf(" N  out %" PRIu64  " minimizers \n",  contain->length);
+
+		radix_sort_mr(&contain->data, contain->length);
 
 	  kseq_destroy(seq); // STEP 5: destroy seq
 	  gzclose(fp); // STEP 6: close the file handler
 
-		*nmin = nMinimizers;
+
+    printf("INFO: Done sketching minimizers from file: %s\n", filename);
 	  return 0;
 }
 
@@ -229,7 +243,7 @@ void findOffsets(struct mr * mins, int nmins){
 	}
 }
 
-int writeDB(struct mr * mins, char * filename, int nmin)
+int writeDB(struct ns * contain, char * filename)
 {
 		printf("INFO: writing minimizers index\n");
 		char db[strlen(filename)+5];
@@ -243,14 +257,17 @@ int writeDB(struct mr * mins, char * filename, int nmin)
 		uint64_t magicTail  = 931 ;
 
 		fwrite(&magicFront, sizeof(uint64_t), 1, fn);
-		fwrite(&nmin, sizeof(uint64_t), 1, fn);
-		fwrite(mins, sizeof(struct mr), sizeof(mins), fn);
+		fwrite(&contain->length, sizeof(uint64_t), 1, fn);
+		fwrite(contain->data, sizeof(struct mr), contain->length, fn);
 		fwrite(&magicTail, sizeof(uint64_t), 1, fn);
 		fclose(fn);
+
+    printf("INFO wrote %" PRIu64  " minimizers \n",  contain->length);
+
 		return 0;
 }
 
-int readDB(struct mr * minimizers, char * filename, int * nmin){
+int readDB(struct ns * contains, char * filename){
 
 	printf("INFO: reading minimizers index\n");
 
@@ -261,20 +278,20 @@ int readDB(struct mr * minimizers, char * filename, int * nmin){
 	FILE * fn;
 	fn = fopen(db, "rb");
 	uint64_t magicFront;
-	uint32_t nMin;
 	uint64_t magicTail;
 
 	fread(&magicFront, sizeof(uint64_t), 1, fn);
-	fread(&nMin, sizeof(uint32_t), 1, fn);
+	fread(&contains->length, sizeof(uint64_t), 1, fn);
+
 
 	if(magicFront != MAGIC_HEAD){
 		printf("FATAL: Index is corrupt\n");
 		return 1;
 	}
 
-	minimizers = (struct mr *) malloc(sizeof(struct mr)*nMin);
+	contains->data = (struct mr *) malloc(sizeof(struct mr)*contains->length);
 
-	fread(minimizers, sizeof(struct mr), nMin, fn);
+	fread(contains->data, sizeof(struct mr), contains->length, fn);
 	fread(&magicTail, sizeof(uint64_t), 1, fn);
 
 	if(magicTail != MAGIC_TAIL){
@@ -282,9 +299,9 @@ int readDB(struct mr * minimizers, char * filename, int * nmin){
 		return 1;
 	}
 
-	fclose(fn);
+  printf("INFO read %" PRIu64  " minimizers \n",  contains->length);
 
-	*nmin = nMin;
+	fclose(fn);
 
 	return 0;
 
