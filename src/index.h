@@ -5,6 +5,10 @@
 #include <inttypes.h>
 #include <string.h>
 
+#ifndef INDEX_H
+#define INDEX_H
+
+
 #ifndef MAGIC_HEAD
 #define  MAGIC_HEAD 1984
 #endif
@@ -211,7 +215,9 @@ int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 		uint32_t rid = 0;
 
 	  while ((l = kseq_read(seq)) >= 0) { // STEP 4: read sequence
-			sketch(seq->name.s, seq->seq.s, seq->seq.l, ksize, wsize, rid, &contain->data, &contain->length);
+			sketch(seq->name.s, seq->seq.s,
+        seq->seq.l, ksize, wsize, rid,
+        &contain->data, &contain->length);
 			rid++;
 		}
 
@@ -306,3 +312,5 @@ int readDB(struct ns * contains, char * filename){
 	return 0;
 
 }
+
+#endif

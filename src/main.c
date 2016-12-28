@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "index.h"
+#include "search.h"
 
 struct opts{
 	int dump;
@@ -73,10 +74,15 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
+	struct ns tDB, qDB;
+	loadOrBuild(&tDB, argv[optind]);
+	optind++;
+
 	for (; optind < argc; optind++){
-		struct ns qDB;
 		loadOrBuild(&qDB, argv[optind]);
 	}
+
+	search(&tDB, &qDB);
 
   return 0;
 }
