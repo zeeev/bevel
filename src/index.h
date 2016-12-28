@@ -86,7 +86,7 @@ void radix_sort_mr(struct mr ** data, uint64_t len){
 }
 
 
-static inline print_mr(struct mr * m){
+static inline void print_mr(struct mr * m){
 	printf("minimizer:\n");
 	printf(" min:    %" PRIu64  "\n",  m->min);
 	printf(" load:   %" PRIu64  "\n",  m->load );
@@ -121,7 +121,7 @@ void sketch(const char * name, const char * seq,
 									int len, int k, int w,
 									uint32_t rid,
 									struct mr ** data,
-									int  * datumSize ){
+									uint32_t  * datumSize ){
 
   uint64_t shift1 = 2 * (k - 1), mask = (1ULL << 2*k)-1;
 
@@ -188,7 +188,6 @@ void sketch(const char * name, const char * seq,
 	}
 
 	*datumSize += n;
-printf(" N %" PRIu64  " minimizers \n",  *datumSize);
 
 	free(buffer);
 }
@@ -268,7 +267,7 @@ int writeDB(struct ns * contain, char * filename)
 		fwrite(&magicTail, sizeof(uint64_t), 1, fn);
 		fclose(fn);
 
-    printf("INFO wrote %" PRIu64  " minimizers \n",  contain->length);
+    printf("INFO wrote %i minimizers \n",  contain->length);
 
 		return 0;
 }
@@ -305,7 +304,7 @@ int readDB(struct ns * contains, char * filename){
 		return 1;
 	}
 
-  printf("INFO read %" PRIu64  " minimizers \n",  contains->length);
+  printf("INFO read %i minimizers \n",  contains->length);
 
 	fclose(fn);
 

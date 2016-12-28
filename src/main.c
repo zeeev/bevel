@@ -24,6 +24,7 @@ int loadOrBuild(struct ns * mins, char * filename){
 			writeDB(mins, filename);
 		}
 	}
+	return 0;
 }
 
 int main(int argc, char *argv[])
@@ -82,7 +83,7 @@ int main(int argc, char *argv[])
 		loadOrBuild(&qDB, argv[optind]);
 	}
 
-	search(&qDB, &tDB);
+	search(&tDB, &qDB);
 
   return 0;
 }
