@@ -1,13 +1,13 @@
-INCLUDE=./src
+INCLUDE=-I ./src
 LINKERS=-lz
-FLAGS=-Wall -03
+FLAGS=-Wall -g
 
 .PHONY: all clean
 
 all: bin/bevel
 
 bin/bevel: bin/ src/main.c src/index.h src/search.h
-	gcc -I $(FLAG) $(INCLUDE) $(LINKERS) src/main.c -o bin/bevel
+	gcc $(FLAGS) $(INCLUDE) src/main.c -o bin/bevel  $(LINKERS)
 
 bin/:
 	mkdir -p bin

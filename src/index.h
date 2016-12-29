@@ -85,6 +85,24 @@ void radix_sort_mr(struct mr ** data, uint64_t len){
 	rad_sort_u(data, 0, len - 1, bit);
 }
 
+struct ns *  db_init(){
+
+	struct ns * db;
+
+	db = (struct ns *)malloc(sizeof(struct ns));
+	db->length = 0;
+	db->data = (struct mr*)malloc(sizeof(struct mr));
+
+	return db;
+
+}
+
+void db_destroy(struct ns * db){
+
+	free(db->data);
+
+}
+
 
 static inline void print_mr(struct mr * m){
 	printf("minimizer:\n");
@@ -128,7 +146,7 @@ void sketch(const char * name, const char * seq,
 	struct kp kmers;
 	kmers.km[0] = 0; kmers.km[1] = 0;
 
-	uint64_t wa = 0, cr = 0, min = 0;
+	uint64_t wa = 0, cr = 0;
 	uint8_t strand = 0;
 
   assert(len > 0 && w > 0 && k > 0 && len > k && len > w && k < 64/2);
@@ -136,10 +154,9 @@ void sketch(const char * name, const char * seq,
 	int s = ((int)len/(float)w) +1 ;
 
 	// $i is the base index
-	// $j is the count of acceptable bases
 	// $l last kmer window
 	// $n buffer index
-  int i = 0, j = 0, l = 0, n = 0;
+  int i = 0, l = 0, n = 0;
 
 	l = k;
 
@@ -188,7 +205,6 @@ void sketch(const char * name, const char * seq,
 	}
 
 	*datumSize += n;
-
 	free(buffer);
 }
 
@@ -201,9 +217,7 @@ KSEQ_INIT(gzFile, gzread)
 
 int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 	{
-    printf("INFO: Sketching minimizers from file: %s\n", filename);
-
-		contain->data  = (struct mr*)malloc(sizeof(struct mr));
+    fprintf(stderr, "INFO: Sketching minimizers from file: %s\n", filename);
 
 	  gzFile fp;
 	  kseq_t *seq;
@@ -227,7 +241,7 @@ int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 	  gzclose(fp); // STEP 6: close the file handler
 
 
-    printf("INFO: Done sketching minimizers from file: %s\n", filename);
+    fprintf(stderr, "INFO: Done sketching minimizers from file: %s\n", filename);
 	  return 0;
 }
 
@@ -250,7 +264,7 @@ void findOffsets(struct mr * mins, int nmins){
 
 int writeDB(struct ns * contain, char * filename)
 {
-		printf("INFO: writing minimizers index\n");
+		fprintf(stderr, "INFO: writing minimizers to index\n");
 		char db[strlen(filename)+5];
 		strcpy(db, filename);
 		strcat(db, ".midx");
@@ -267,18 +281,19 @@ int writeDB(struct ns * contain, char * filename)
 		fwrite(&magicTail, sizeof(uint64_t), 1, fn);
 		fclose(fn);
 
-    printf("INFO wrote %i minimizers \n",  contain->length);
+    fprintf(stderr, "INFO: wrote %i minimizers\n",  contain->length);
 
 		return 0;
 }
 
 int readDB(struct ns * contains, char * filename){
 
-	printf("INFO: reading minimizers index\n");
-
 	char db[strlen(filename)+5];
 	strcpy(db, filename);
 	strcat(db, ".midx");
+
+	fprintf(stderr, "INFO: reading minimizers index: %s\n", db);
+
 
 	FILE * fn;
 	fn = fopen(db, "rb");
@@ -290,7 +305,7 @@ int readDB(struct ns * contains, char * filename){
 
 
 	if(magicFront != MAGIC_HEAD){
-		printf("FATAL: Index is corrupt\n");
+		fprintf(stderr, "FATAL: Index is corrupt\n");
 		return 1;
 	}
 
@@ -300,11 +315,11 @@ int readDB(struct ns * contains, char * filename){
 	fread(&magicTail, sizeof(uint64_t), 1, fn);
 
 	if(magicTail != MAGIC_TAIL){
-		printf("FATAL: Index is truncated\n");
+		fprintf(stderr, "\nFATAL: Index is truncated\n");
 		return 1;
 	}
 
-  printf("INFO read %i minimizers \n",  contains->length);
+  fprintf(stderr, "INFO: read %i minimizers: %s \n",  contains->length, db);
 
 	fclose(fn);
 

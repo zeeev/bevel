@@ -74,16 +74,23 @@ int main(int argc, char *argv[])
 		printf("\nFATAL: No target or query provided.\n\n" );
 		exit(1);
 	}
+	
+	struct ns * tDB = db_init();
+	struct ns * qDB = db_init();
 
-	struct ns tDB, qDB;
-	loadOrBuild(&tDB, argv[optind]);
+	printf("HERE\n");
+
+	loadOrBuild(tDB, argv[optind]);
 	optind++;
 
 	for (; optind < argc; optind++){
-		loadOrBuild(&qDB, argv[optind]);
+		loadOrBuild(qDB, argv[optind]);
 	}
 
-	search(&tDB, &qDB);
+	search(tDB, qDB);
+
+	db_destroy(tDB);
+	db_destroy(qDB);
 
   return 0;
 }

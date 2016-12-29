@@ -22,7 +22,7 @@ int custom_bsearch (struct mr *a, uint32_t n, uint64_t x) {
 int search(struct ns * target, struct ns * query)
 {
 
-  printf("INFO: searching %i by %i kmers\n", target->length, query->length);
+  fprintf(stderr, "INFO: searching %i by %i kmers\n", target->length, query->length);
 
   uint32_t i = 0;
   uint32_t j = 0;
