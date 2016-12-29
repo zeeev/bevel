@@ -229,7 +229,7 @@ int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 
 	  while ((l = kseq_read(seq)) >= 0) { // STEP 4: read sequence
 			if(seq->seq.l <= wsize){
-				fprintf("WARNING: Skipping %s : too small.\n", seq->seq.s);
+				fprintf(stderr, "WARNING: Skipping %s : too small.\n", seq->seq.s);
 				continue;
 			}
 
