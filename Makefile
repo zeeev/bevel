@@ -1,6 +1,6 @@
 INCLUDE=-I ./src
 LINKERS=-lz
-FLAGS=-Wall -g
+FLAGS=-Wall -O3
 
 .PHONY: all clean
 
