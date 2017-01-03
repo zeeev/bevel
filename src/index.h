@@ -25,10 +25,17 @@ struct mr{
 	uint64_t min, load;
 };
 
+struct seqName{
+	uint8_t * seq;
+	uint32_t  len;
+};
+
 struct ns{
-  char ** names;
-  struct mr * data;
-  uint32_t length;
+  struct seqName   * names;
+	uint32_t        namesize;
+	uint32_t         namelen;
+  struct mr         * data;
+  uint32_t          length;
 };
 
 
@@ -57,6 +64,8 @@ unsigned char seq_nt4_table[256] = {
 };
 
 #define swap(t, a, b) {t tmp = a; a = b; b = tmp; }
+
+KSEQ_INIT(gzFile, gzread)
 
 static void rad_sort_u(struct mr ** data,
 		uint32_t from,
@@ -90,8 +99,11 @@ struct ns *  db_init(){
 	struct ns * db;
 
 	db = (struct ns *)malloc(sizeof(struct ns));
-	db->length = 0;
-	db->data = (struct mr*)malloc(sizeof(struct mr));
+	db->length   = 0;
+	db->namelen  = 0;
+	db->namesize = 100;
+	db->data     = (struct mr*)malloc(sizeof(struct mr));
+	db->names    = (struct seqName *)malloc(sizeof(struct seqName)*100);
 
 	return db;
 
@@ -100,6 +112,14 @@ struct ns *  db_init(){
 void db_destroy(struct ns * db){
 
 	free(db->data);
+
+	uint32_t i = 0;
+
+	for(; i < db->namesize; i++){
+		free(db->names[i].seq);
+	}
+	free(db->names);
+
 
 }
 
@@ -127,6 +147,32 @@ static inline uint64_t hash64(uint64_t key, uint64_t mask)
 }
 
 /**
+ * adds sequence names to the ns object
+ * @param db database object
+ * @param k  kseq_t
+ */
+void loadSeq(struct ns * db, kseq_t * k)
+{
+
+	if(db->namelen == db->namesize){
+ 		db->namesize += 100;
+		db->names = (struct seqName *)realloc(db->names, 100 * sizeof(struct seqName) );
+	}
+
+	db->names[db->namelen].seq = (uint8_t *)malloc(sizeof(uint8_t)* k->name.l);
+
+	uint32_t i = 0;
+
+	for(; i < k->name.l; i++){
+		db->names[db->namelen].seq[i] = (uint8_t)k->name.s[i];
+	}
+
+	db->namelen += 1;
+
+}
+
+
+/**
  * Takes a char pointer and creates a list of minimizers
  *
  * @param seq    the sequences
@@ -151,7 +197,7 @@ void sketch(const char * name, const char * seq,
 
   assert(len > 0 && w > 0 && k > 0 && len > k && len > w && k < 64/2);
 
-	int s = ((int)len/(float)w) +1 ;
+	int s = ((int)len/(float)w) +2 ;
 
 	// $i is the base index
 	// $l last kmer window
@@ -208,7 +254,7 @@ void sketch(const char * name, const char * seq,
 	free(buffer);
 }
 
-KSEQ_INIT(gzFile, gzread)
+
 /**
  * [fileSketch description]
  * @param  argv [description]
@@ -232,6 +278,8 @@ int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 				fprintf(stderr, "WARNING: Skipping %s : too small.\n", seq->seq.s);
 				continue;
 			}
+
+			loadSeq(contain, seq);
 
 			sketch(seq->name.s, seq->seq.s,
         seq->seq.l, ksize, wsize, rid,
@@ -281,6 +329,14 @@ int writeDB(struct ns * contain, char * filename)
 		uint64_t magicTail  = 931 ;
 
 		fwrite(&magicFront, sizeof(uint64_t), 1, fn);
+		fwrite(&contain->namelen, sizeof(uint32_t), 1, fn);
+
+		uint32_t i = 0;
+		for(; i < contain->namelen; i++){
+			fwrite(&contain->names[i].len, sizeof(uint32_t), 1, fn);
+			fwrite(contain->names[i].seq, sizeof(uint8_t), contain->names[i].len, fn);
+		}
+
 		fwrite(&contain->length, sizeof(uint64_t), 1, fn);
 		fwrite(contain->data, sizeof(struct mr), contain->length, fn);
 		fwrite(&magicTail, sizeof(uint64_t), 1, fn);
@@ -299,20 +355,34 @@ int readDB(struct ns * contains, char * filename){
 
 	fprintf(stderr, "INFO: reading minimizers index: %s\n", db);
 
-
 	FILE * fn;
 	fn = fopen(db, "rb");
 	uint64_t magicFront;
 	uint64_t magicTail;
 
 	fread(&magicFront, sizeof(uint64_t), 1, fn);
-	fread(&contains->length, sizeof(uint64_t), 1, fn);
 
 
 	if(magicFront != MAGIC_HEAD){
 		fprintf(stderr, "FATAL: Index is corrupt\n");
 		return 1;
 	}
+
+	fread(&contains->namelen, sizeof(uint32_t), 1, fn);
+	contains->namesize = contains->namelen;
+
+	contains->names = (struct seqName *) malloc(sizeof(struct seqName)*contains->namelen);
+
+	uint32_t i = 0;
+	for(; i < contains->namelen; i++){
+		fread(&contains->names[i].len, sizeof(uint32_t), 1, fn);
+		contains->names[i].seq = (uint8_t *)malloc(sizeof(uint8_t)*contains->names[i].len);
+
+		fread(contains->names[i].seq, sizeof(uint8_t), contains->names[i].len, fn);
+	}
+
+
+	fread(&contains->length, sizeof(uint64_t), 1, fn);
 
 	contains->data = (struct mr *) malloc(sizeof(struct mr)*contains->length);
 
