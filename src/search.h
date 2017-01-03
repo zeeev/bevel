@@ -83,8 +83,9 @@ int search(struct ns * target, struct ns * query)
       printf("\t");
       printSeqNames(&target->names[(uint32_t)target->data[i].load>>32]);
       printf("\t");
-      printf("%i\t%i\t%i\n",   (uint32_t)query->data[i].load>>1,
-      (uint32_t)target->data[j].load>>1, end - start +1);
+      printf("%i\t%i\t%i\t%i\t%i\n",   (uint32_t)query->data[i].load>>1,
+      (uint32_t)target->data[j].load>>1, end - start +1,
+      (uint32_t)query->data[i].load & 1, (uint32_t)target->data[i].load & 1);
     }
   }
 
