@@ -19,5 +19,7 @@ bin/bevel -d target.fa
 ```
 
 ## output
+
+
 | ------------ | ------------- | ----------- | ----------- | --------------------------------------|
 |  query Seqid | target Seqid  | query Start | targetStart | number of minimizers found in target  |
