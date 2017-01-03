@@ -20,8 +20,9 @@ bin/bevel -d target.fa
 
 ## output
 
-The output is a five column TSV that is written to STDOUT: 
+The output is a five column TSV that is written to STDOUT:
 
- | ------------ | ------------- | ----------- | ----------- | --------------------------------------|
- |  query Seqid | target Seqid  | query Start | targetStart | number of minimizers found in target  |
 
+
+|  query Seqid | target Seqid  | query Start | targetStart | number of minimizers found in target  |
+| ------------ | ------------- | ----------- | ----------- | --------------------------------------|
