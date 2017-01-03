@@ -124,6 +124,9 @@ void db_destroy(struct ns * db){
 }
 
 
+/**
+ * Dump the mr struct
+ */
 static inline void print_mr(struct mr * m){
 	printf("minimizer:\n");
 	printf(" min:    %" PRIu64  "\n",  m->min);
@@ -134,6 +137,9 @@ static inline void print_mr(struct mr * m){
 	printf("\n");
 }
 
+/**
+ * Function insures that "A" homopolymers aren't zero
+ */
 static inline uint64_t hash64(uint64_t key, uint64_t mask)
 {
 	key = (~key + (key << 21)) & mask; // key = (key << 21) - key - 1;
@@ -159,6 +165,7 @@ void loadSeq(struct ns * db, kseq_t * k)
 		db->names = (struct seqName *)realloc(db->names, 100 * sizeof(struct seqName) );
 	}
 
+	db->names[db->namelen].len = k->name.l;
 	db->names[db->namelen].seq = (uint8_t *)malloc(sizeof(uint8_t)* k->name.l);
 
 	uint32_t i = 0;
@@ -373,6 +380,7 @@ int readDB(struct ns * contains, char * filename){
 
 	contains->names = (struct seqName *) malloc(sizeof(struct seqName)*contains->namelen);
 
+
 	uint32_t i = 0;
 	for(; i < contains->namelen; i++){
 		fread(&contains->names[i].len, sizeof(uint32_t), 1, fn);
@@ -380,7 +388,6 @@ int readDB(struct ns * contains, char * filename){
 
 		fread(contains->names[i].seq, sizeof(uint8_t), contains->names[i].len, fn);
 	}
-
 
 	fread(&contains->length, sizeof(uint64_t), 1, fn);
 
