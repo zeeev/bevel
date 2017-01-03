@@ -248,7 +248,7 @@ void sketch(const char * name, const char * seq,
   		}
   	}
 
-	printf("INFO: Seq %s has %i minimizers\n", name, n );
+	fprintf(stderr, "INFO: Seq %s has %i minimizers\n", name, n );
 
 	*data = (struct mr *) realloc(*data, (n + (*datumSize)) * sizeof(struct mr));
 
