@@ -81,14 +81,16 @@ int main(int argc, char *argv[])
 	loadOrBuild(tDB, argv[optind]);
 	optind++;
 
+	int nq = 0;
 	for (; optind < argc; optind++){
 		loadOrBuild(qDB, argv[optind]);
+		nq+=1;
 	}
 
 	search(tDB, qDB);
 
 	db_destroy(tDB);
-	db_destroy(qDB);
+	if(nq > 0) db_destroy(qDB);
 
   return 0;
 }
