@@ -31,7 +31,7 @@ int custom_bsearch (struct mr *a, uint32_t n, uint64_t x) {
  * @param  sInfo a pointer to a seqName struct
  * @return      NA
  */
-void inline printSeqNames(struct seqName * sInfo){
+void printSeqNames(struct seqName * sInfo){
 
   uint32_t i = 0;
 
