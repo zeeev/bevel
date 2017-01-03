@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 
  int c;
 
-	static char usage[] = "usage: %s [options] <target.fa> <query.fa> <query.fa ... >\n";
+	static char usage[] = "usage: bevel [options] <target.fa> <query.fa> <query.fa ... \n\n options:\n    -d <FLAG> Write databases to files\n    -w <INT>  Save every Nth minimizer [100]\n    -k <INT>  Minimizer size (up to 32) [17] \n";
 
 	while ((c = getopt(argc, argv, "dhw:k:")) != -1){
 				switch (c) {
