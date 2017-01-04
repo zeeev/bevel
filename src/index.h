@@ -98,12 +98,12 @@ struct ns *  db_init(){
 
 	struct ns * db;
 
-	db = (struct ns *)malloc(sizeof(struct ns));
+	db = malloc(sizeof(struct ns));
 	db->length   = 0;
 	db->namelen  = 0;
 	db->namesize = 100;
-	db->data     = (struct mr*)malloc(sizeof(struct mr));
-	db->names    = (struct seqName *)malloc(sizeof(struct seqName)*100);
+	db->data     = malloc(sizeof(struct mr));
+	db->names    = malloc(sizeof(struct seqName)*100);
 
 	return db;
 
@@ -166,7 +166,7 @@ void loadSeq(struct ns * db, kseq_t * k)
 	}
 
 	db->names[db->namelen].len = k->name.l;
-	db->names[db->namelen].seq = (uint8_t *)malloc(sizeof(uint8_t)* k->name.l);
+	db->names[db->namelen].seq = malloc(sizeof(uint8_t)* k->name.l);
 
 	uint32_t i = 0;
 
@@ -213,7 +213,7 @@ void sketch(const char * name, const char * seq,
 
 	l = k;
 
-	struct mr * buffer = (struct mr *) malloc( sizeof(struct mr) * s);
+	struct mr * buffer = malloc( sizeof(struct mr) * s);
 
 	for(i = 0;i < s; i++){
 		buffer[i].min     = UINT64_MAX;
@@ -258,7 +258,9 @@ void sketch(const char * name, const char * seq,
 	}
 
 	*datumSize += n;
+	fprintf(stderr, "about to free buffer\n");
 	free(buffer);
+
 }
 
 
@@ -293,7 +295,6 @@ int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
         &contain->data, &contain->length);
 			rid++;
 		}
-
 
 		radix_sort_mr(&contain->data, contain->length);
 
@@ -378,20 +379,20 @@ int readDB(struct ns * contains, char * filename){
 	fread(&contains->namelen, sizeof(uint32_t), 1, fn);
 	contains->namesize = contains->namelen;
 
-	contains->names = (struct seqName *) malloc(sizeof(struct seqName)*contains->namelen);
+	contains->names = malloc(sizeof(struct seqName)*contains->namelen);
 
 
 	uint32_t i = 0;
 	for(; i < contains->namelen; i++){
 		fread(&contains->names[i].len, sizeof(uint32_t), 1, fn);
-		contains->names[i].seq = (uint8_t *)malloc(sizeof(uint8_t)*contains->names[i].len);
+		contains->names[i].seq = malloc(sizeof(uint8_t)*contains->names[i].len);
 
 		fread(contains->names[i].seq, sizeof(uint8_t), contains->names[i].len, fn);
 	}
 
 	fread(&contains->length, sizeof(uint64_t), 1, fn);
 
-	contains->data = (struct mr *) malloc(sizeof(struct mr)*contains->length);
+	contains->data = malloc(sizeof(struct mr)*contains->length);
 
 	fread(contains->data, sizeof(struct mr), contains->length, fn);
 	fread(&magicTail, sizeof(uint64_t), 1, fn);
