@@ -15,7 +15,7 @@ loadOrBuild(qDB, “fasta.fa|fq”);
 search(tDB, qDB);
 ```
 
-The inspiration and much of the code comes from :
+The inspiration and much of the code comes from minimap.  If you find this code useful please cite:
 ```
 Li, Heng. "Minimap and miniasm: fast mapping and de novo assembly for noisy long sequences." 
     Bioinformatics (2016): btw152.
