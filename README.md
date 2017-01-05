@@ -17,7 +17,8 @@ search(tDB, qDB);
 
 The inspiration and much of the code comes from :
 ```
-Li, Heng. "Minimap and miniasm: fast mapping and de novo assembly for noisy long sequences." Bioinformatics (2016): btw152.
+Li, Heng. "Minimap and miniasm: fast mapping and de novo assembly for noisy long sequences." 
+    Bioinformatics (2016): btw152.
 ```
 
 ## install 
