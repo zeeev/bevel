@@ -1,6 +1,6 @@
 INCLUDE=-I ./src
 LINKERS=-lz
-FLAGS=-Wall -O3 -save-temps=obj
+FLAGS=-Wall -O3
 
 .PHONY: all clean
 

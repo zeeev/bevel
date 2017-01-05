@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 		nq+=1;
 	}
 
-	search(tDB, qDB);
+	if (nq > 0) search(tDB, qDB);
 
 	db_destroy(tDB);
 	if(nq > 0) db_destroy(qDB);
