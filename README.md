@@ -1,4 +1,4 @@
-#<center> <img src="https://github.com/zeeev/bevel/blob/master/images/logo.png" width="350"></center>
+# -> <img src="https://github.com/zeeev/bevel/blob/master/images/logo.png" width="350"> <-
 
 Bevel is a sequence similarity search tool that uses a minimizer database.  Minimizers are representative kmers across a window of kmers.  Two databases can be queried against each other, resulting in a list of positions where two or more sequences match. 
 
