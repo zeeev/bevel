@@ -1,6 +1,6 @@
 INCLUDE=-I ./src
 LINKERS=-lz
-FLAGS=-Wall -O3
+FLAGS=-Wall -O3 -save-temps=obj
 
 .PHONY: all clean
 
@@ -13,4 +13,4 @@ bin/:
 	mkdir -p bin
 
 clean:
-	rm -rf bin
+	rm -rf bin 

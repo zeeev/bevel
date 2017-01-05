@@ -32,17 +32,12 @@ struct seqName{
 
 struct ns{
   struct seqName   * names;
+  struct mr         * data;
 	uint32_t        namesize;
 	uint32_t         namelen;
-  struct mr         * data;
   uint32_t          length;
 };
 
-
-struct offsetInfo{
-	uint32_t arrayOffset;
-	uint32_t count;
-};
 
 unsigned char seq_nt4_table[256] = {
 	0, 1, 2, 3,  4, 4, 4, 4,  4, 4, 4, 4,  4, 4, 4, 4,
@@ -115,7 +110,7 @@ void db_destroy(struct ns * db){
 
 	uint32_t i = 0;
 
-	for(; i < db->namesize; i++){
+	for(; i < db->namelen; i++){
 		free(db->names[i].seq);
 	}
 	free(db->names);
@@ -162,7 +157,7 @@ void loadSeq(struct ns * db, kseq_t * k)
 
 	if(db->namelen == db->namesize){
  		db->namesize += 100;
-		db->names = (struct seqName *)realloc(db->names, 100 * sizeof(struct seqName) );
+		db->names = realloc(db->names, db->namesize * sizeof(struct seqName) );
 	}
 
 	db->names[db->namelen].len = k->name.l;
@@ -177,7 +172,6 @@ void loadSeq(struct ns * db, kseq_t * k)
 	db->namelen += 1;
 
 }
-
 
 /**
  * Takes a char pointer and creates a list of minimizers
@@ -250,7 +244,7 @@ void sketch(const char * name, const char * seq,
 
 	fprintf(stderr, "INFO: Seq %s has %i minimizers\n", name, n );
 
-	*data = (struct mr *) realloc(*data, (n + (*datumSize)) * sizeof(struct mr));
+	*data = realloc(*data, (n + (*datumSize)) * sizeof(struct mr));
 
 	for(i = 0; i < n; i++){
 		(*data)[i + (*datumSize)].load = buffer[i].load;
@@ -258,7 +252,6 @@ void sketch(const char * name, const char * seq,
 	}
 
 	*datumSize += n;
-	fprintf(stderr, "about to free buffer\n");
 	free(buffer);
 
 }
@@ -296,6 +289,8 @@ int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 			rid++;
 		}
 
+		fprintf(stderr, "INFO: Sketched %i sequence\n", rid);
+		fprintf(stderr, "INFO: Sorting minimizers\n");
 		radix_sort_mr(&contain->data, contain->length);
 
 	  kseq_destroy(seq); // STEP 5: destroy seq
