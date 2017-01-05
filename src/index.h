@@ -33,7 +33,6 @@ struct seqName{
 struct ns{
   struct seqName   * names;
   struct mr         * data;
-	uint32_t        namesize;
 	uint32_t         namelen;
   uint32_t          length;
 };
@@ -96,7 +95,6 @@ struct ns *  db_init(){
 	db = malloc(sizeof(struct ns));
 	db->length   = 0;
 	db->namelen  = 0;
-	db->namesize = 100;
 	db->data     = malloc(sizeof(struct mr));
 	db->names    = malloc(sizeof(struct seqName)*100);
 
@@ -152,25 +150,21 @@ static inline uint64_t hash64(uint64_t key, uint64_t mask)
  * @param db database object
  * @param k  kseq_t
  */
-void loadSeq(struct ns * db, kseq_t * k)
+void loadSeq(struct ns * db, kseq_t * k, uint32_t count)
 {
 
-	if(db->namelen == db->namesize){
- 		db->namesize += 100;
-		db->names = realloc(db->names, db->namesize * sizeof(struct seqName) );
+	if((count % 100) == 0 ){
+		db->names = realloc(db->names, (count+100) * sizeof(struct seqName) );
 	}
 
-	db->names[db->namelen].len = k->name.l;
-	db->names[db->namelen].seq = malloc(sizeof(uint8_t)* k->name.l);
+	db->names[count].len = k->name.l;
+	db->names[count].seq = malloc(sizeof(uint8_t)* k->name.l);
 
 	uint32_t i = 0;
 
 	for(; i < k->name.l; i++){
-		db->names[db->namelen].seq[i] = (uint8_t)k->name.s[i];
+		db->names[count].seq[i] = (uint8_t)k->name.s[i];
 	}
-
-	db->namelen += 1;
-
 }
 
 /**
@@ -280,14 +274,15 @@ int fileSketch(struct ns * contain, char * filename, int ksize, int wsize)
 				fprintf(stderr, "WARNING: Skipping %s : too small.\n", seq->seq.s);
 				continue;
 			}
-
-			loadSeq(contain, seq);
+			loadSeq(contain, seq, rid);
 
 			sketch(seq->name.s, seq->seq.s,
         seq->seq.l, ksize, wsize, rid,
         &contain->data, &contain->length);
+
 			rid++;
 		}
+		contain->namelen = rid;
 
 		fprintf(stderr, "INFO: Sketched %i sequence\n", rid);
 		fprintf(stderr, "INFO: Sorting minimizers\n");
@@ -320,7 +315,7 @@ void findOffsets(struct mr * mins, int nmins){
 
 int writeDB(struct ns * contain, char * filename)
 {
-		fprintf(stderr, "INFO: writing minimizers to index\n");
+		fprintf(stderr, "INFO: Writing minimizers to index\n");
 		char db[strlen(filename)+5];
 		strcpy(db, filename);
 		strcat(db, ".midx");
@@ -345,7 +340,7 @@ int writeDB(struct ns * contain, char * filename)
 		fwrite(&magicTail, sizeof(uint64_t), 1, fn);
 		fclose(fn);
 
-    fprintf(stderr, "INFO: wrote %i minimizers\n",  contain->length);
+    fprintf(stderr, "INFO: Wrote %i minimizers\n",  contain->length);
 
 		return 0;
 }
@@ -356,7 +351,7 @@ int readDB(struct ns * contains, char * filename){
 	strcpy(db, filename);
 	strcat(db, ".midx");
 
-	fprintf(stderr, "INFO: reading minimizers index: %s\n", db);
+	fprintf(stderr, "INFO: Reading minimizers index: %s\n", db);
 
 	FILE * fn;
 	fn = fopen(db, "rb");
@@ -372,10 +367,7 @@ int readDB(struct ns * contains, char * filename){
 	}
 
 	fread(&contains->namelen, sizeof(uint32_t), 1, fn);
-	contains->namesize = contains->namelen;
-
 	contains->names = malloc(sizeof(struct seqName)*contains->namelen);
-
 
 	uint32_t i = 0;
 	for(; i < contains->namelen; i++){
@@ -397,7 +389,7 @@ int readDB(struct ns * contains, char * filename){
 		return 1;
 	}
 
-  fprintf(stderr, "INFO: read %i minimizers: %s \n",  contains->length, db);
+  fprintf(stderr, "INFO: Read %i minimizers: %s \n",  contains->length, db);
 
 	fclose(fn);
 

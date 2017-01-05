@@ -78,12 +78,17 @@ int search(struct ns * target, struct ns * query)
     }
 
 
-    uint64_t t, q;
+    uint32_t t, q;
+
+    q = (query->data[i].load>>32);
 
     for(j = start; j <= end; j++){
 
-      q = query->data[i].load>>32;
-      t = target->data[i].load>>32;
+      t = (target->data[j].load>>32);
+
+    //  fprintf(stderr, "q: %i t: %i\n", q, t);
+
+      assert(q <= query->namelen && t <= target->namelen);
 
       printSeqNames(&query->names[q]);
       printf("\t");
@@ -91,7 +96,7 @@ int search(struct ns * target, struct ns * query)
       printf("\t");
       printf("%i\t%i\t%i\t%i\t%i\n",   (uint32_t)query->data[i].load>>1,
       (uint32_t)target->data[j].load>>1, end - start +1,
-      (uint32_t)query->data[i].load & 1, (uint32_t)target->data[i].load & 1);
+      (uint32_t)query->data[i].load & 1, (uint32_t)target->data[j].load & 1);
     }
   }
 
