@@ -52,6 +52,7 @@ The output is a five column TSV that is written to STDOUT:
 
 |  query Seqid | target Seqid  | query Start | target Start | number of minimizers found in target  | query strand (+ = 0) | target strand (+ = 0)| 
 | ------------ | ------------- | ----------- | ------------ | --------------------------------------| -------------------- | -------------------- | 
+| ------------ | ------------- | ----------- | ------------ | --------------------------------------| -------------------- | -------------------- | 
 
 
  
