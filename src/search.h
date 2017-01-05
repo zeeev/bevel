@@ -52,7 +52,7 @@ void printSeqNames(struct seqName * sInfo){
 int search(struct ns * target, struct ns * query)
 {
 
-  fprintf(stderr, "INFO: searching %i by %i kmers\n", target->length, query->length);
+  fprintf(stderr, "INFO: Searching %i by %i minimizers\n", target->length, query->length);
 
   uint32_t i = 0;
   uint32_t j = 0;

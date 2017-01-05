@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 					{
 						globalOpts.ksize =  atoi(optarg);
 						if(globalOpts.ksize > 32){
-							printf("\nFATAL: bevel only supports kmers up to 32 bases\n");
+							fprintf(stderr, "\nFATAL: bevel only supports minimizers up to 32 bases\n");
 							return 1;
 						}
 						break;
