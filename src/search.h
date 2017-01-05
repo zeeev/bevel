@@ -77,11 +77,17 @@ int search(struct ns * target, struct ns * query)
       end++;
     }
 
+
+    uint64_t t, q;
+
     for(j = start; j <= end; j++){
 
-      printSeqNames(&query->names[(uint32_t)query->data[i].load>>32]);
+      q = query->data[i].load>>32;
+      t = target->data[i].load>>32;
+
+      printSeqNames(&query->names[q]);
       printf("\t");
-      printSeqNames(&target->names[(uint32_t)target->data[i].load>>32]);
+      printSeqNames(&target->names[t]);
       printf("\t");
       printf("%i\t%i\t%i\t%i\t%i\n",   (uint32_t)query->data[i].load>>1,
       (uint32_t)target->data[j].load>>1, end - start +1,
