@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 
 	if (nq > 0) search(tDB, qDB);
 
-	fprintf(stderr, "INFO: Done searching\n", );
+	fprintf(stderr, "INFO: Done searching\n");
 
 	db_destroy(tDB);
 	if(nq > 0) db_destroy(qDB);
