@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 				}
 	}
 	if(optind >= argc){
-		printf("\nFATAL: No target or query provided.\n\n" );
+		fprintf(stderr, "\nFATAL: No target or query provided.\n\n" );
 		exit(1);
 	}
 
@@ -88,6 +88,8 @@ int main(int argc, char *argv[])
 	}
 
 	if (nq > 0) search(tDB, qDB);
+
+	fprintf(stderr, "INFO: Done searching\n", );
 
 	db_destroy(tDB);
 	if(nq > 0) db_destroy(qDB);
