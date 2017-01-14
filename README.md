@@ -1,6 +1,6 @@
 #  <div style="text-align:center"><img src="https://github.com/zeeev/bevel/blob/master/images/logo.png" width="350"></div>
 
-Bevel is a sequence similarity search tool that uses a minimizer database.  Minimizers are representative kmers across a window of kmers.  Two databases can be queried against each other, resulting in a list of positions where two or more sequences match. 
+Bevel is a sequence similarity search tool that uses a minimizer database.  Minimizers are representative kmers across a genomic region.  Two databases can be queried against each other, resulting in a list of positions where two or more sequences match. 
 
 The  code headers ```index.h``` and ```search.h``` have minimal dependences and can easily be incorporated into other software.  The snippet below shows how to use the database.
 
@@ -21,8 +21,9 @@ Li, Heng. "Minimap and miniasm: fast mapping and de novo assembly for noisy long
 ```
 
 ## installing 
+```
 cd bevel && make
-
+```
 ## running
 
 To produce all minimizer matches across two sequences:
