@@ -60,8 +60,21 @@ int search(struct ns * target, struct ns * query)
   uint64_t currentMin = 0;
 
   for(; i < query->length; i++){
-    if(query->data[i].min == currentMin) continue;
+
     currentMin = query->data[i].min;
+    
+    uint32_t qend = i;
+    while(qend < query->length -1){
+      if (query->data[qend+1].min != currentMin) break;
+      qend++;
+    }
+
+    if((qend - i) > 500 ){
+      i = qend + 1;
+      continue;
+    }
+    
+
     int p = custom_bsearch(target->data, target->length, query->data[i].min);
 
     if(p == -1) continue;
@@ -76,8 +89,11 @@ int search(struct ns * target, struct ns * query)
       if(target->data[end + 1].min != currentMin) break;
       end++;
     }
-
-
+    if((end - start) > 500){
+      continue;
+    }
+    
+    
     uint32_t t, q;
 
     q = (query->data[i].load>>32);
