@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <inttypes.h>
 #include <string.h>
-#define NDEBUG
+
 
 #ifndef INDEX_H
 #define INDEX_H
@@ -112,7 +112,6 @@ struct ns *  db_init(){
 	db->namelen  = 0;
 	db->data     = malloc(sizeof(struct mr));
 	db->names    = malloc(sizeof(struct seqName)*100);
-
 
 	return db;
 
@@ -395,7 +394,7 @@ int writeDB(struct ns * contain, char * filename)
 
 		/* writing the unique offsets */
 		fwrite(&contain->ulength, sizeof(uint32_t), 1, fn);
-		fwrite(&contain->offs,    sizeof(struct off_info), contain->ulength, fn );
+		fwrite(contain->offs,    sizeof(struct off_info), contain->ulength, fn );
 
 		/* writing the data to the DB */
 		fwrite(&contain->length, sizeof(uint64_t), 1, fn);
@@ -423,7 +422,6 @@ int readDB(struct ns * contains, char * filename){
 
 	fread(&magicFront, sizeof(uint64_t), 1, fn);
 
-
 	if(magicFront != MAGIC_HEAD){
 		fprintf(stderr, "FATAL: Index is corrupt\n");
 		return 1;
@@ -436,7 +434,6 @@ int readDB(struct ns * contains, char * filename){
 	for(; i < contains->namelen; i++){
 		fread(&contains->names[i].len, sizeof(uint32_t), 1, fn);
 		contains->names[i].seq = malloc(sizeof(uint8_t)*contains->names[i].len);
-
 		fread(contains->names[i].seq, sizeof(uint8_t), contains->names[i].len, fn);
 	}
 
