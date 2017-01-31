@@ -7,6 +7,7 @@ struct opts{
 	int dump;
 	int window;
 	int ksize;
+	int max;
 }globalOpts;
 
 
@@ -30,16 +31,22 @@ int loadOrBuild(struct ns * mins, char * filename){
 int main(int argc, char *argv[])
 {
 
-	globalOpts.dump   =  0 ;
-	globalOpts.window = 100;
-	globalOpts.ksize  = 17 ;
+	globalOpts.dump   =  0  ;
+	globalOpts.window = 100 ;
+	globalOpts.ksize  = 17  ;
+	globalOpts.max    = 500 ;
 
  int c;
 
-	static char usage[] = "usage: bevel [options] <target.fa> <query.fa> <query.fa ... \n\n options:\n    -d <FLAG> Write databases to files\n    -w <INT>  Save every Nth minimizer [100]\n    -k <INT>  Minimizer size (up to 32) [17] \n";
+	static char usage[] = "usage: bevel [options] <target.fa> <query.fa> <query.fa ... \n\n options:\n    -d <FLAG> Write databases to files\n    -w <INT>  Save every Nth minimizer [100]\n    -k <INT>  Minimizer size (up to 32) [17] \n    -n <INT>  Filter high frequeny minimizers [500]\n";
 
-	while ((c = getopt(argc, argv, "dhw:k:")) != -1){
+	while ((c = getopt(argc, argv, "dhw:k:n:")) != -1){
 				switch (c) {
+					case 'n':
+					{
+						globalOpts.max = atoi(optarg);
+						break;
+					}
 					case 'k':
 					{
 						globalOpts.ksize =  atoi(optarg);
@@ -87,7 +94,7 @@ int main(int argc, char *argv[])
 		nq+=1;
 	}
 
-	if (nq > 0) search(tDB, qDB);
+	if (nq > 0) search(tDB, qDB, globalOpts.max);
 
 	fprintf(stderr, "INFO: Done searching\n");
 

@@ -3,13 +3,13 @@
 #include "index.h"
 
 /**
- * A binary search with struct mr vector
+ * A binary search with struct offset_info vector
  * @param  a struct mr pointer
  * @param  n length of struct mr
  * @param  x midpoint
  * @return   [description]
  */
-int custom_bsearch (struct mr *a, uint32_t n, uint64_t x) {
+int custom_bsearch (struct off_info *a, uint32_t n, uint64_t x) {
     int i = 0, j = n - 1;
     while (i <= j) {
         int k = (i + j) / 2;
@@ -49,73 +49,63 @@ void printSeqNames(struct seqName * sInfo){
  * @param  query  [description]
  * @return        1 if something is wrong, zero on success
  */
-int search(struct ns * target, struct ns * query)
+int search(struct ns * target, struct ns * query, int max)
 {
 
   fprintf(stderr, "INFO: Searching %i by %i minimizers\n", target->length, query->length);
 
   uint32_t i = 0;
-  uint32_t j = 0;
+  uint32_t tstart = 0; uint32_t tend = 0;
+  uint32_t qstart = 0; uint32_t qend = 0;
 
-  uint64_t currentMin = 0;
+  uint32_t j = 0; uint32_t k = 0;
 
-  for(; i < query->length; i++){
+for(i = 1; i < query->ulength; i++){
+  assert(  query->offs[i-1].min < query->offs[i].min);
+}
+for(i = 1; i < target->ulength; i++){
+  assert(  target->offs[i-1].min < target->offs[i].min);
+}
 
-    currentMin = query->data[i].min;
-    
-    uint32_t qend = i;
-    while(qend < query->length -1){
-      if (query->data[qend+1].min != currentMin) break;
-      qend++;
-    }
+  for( i = 0; i < query->ulength; i++){
 
-    if((qend - i) > 500 ){
-      i = qend + 1;
-      continue;
-    }
-    
+    if(query->offs[i].count > max) continue;
 
-    int p = custom_bsearch(target->data, target->length, query->data[i].min);
 
-    if(p == -1) continue;
+    int tp = custom_bsearch(target->offs, target->ulength, query->offs[i].min);
 
-    uint32_t start = p, end = p;
+    if(tp == -1) continue;
 
-    while(start > 1){
-      if(target->data[start - 1].min != currentMin) break;
-      start--;
-    }
-    while(end < target->length - 1){
-      if(target->data[end + 1].min != currentMin) break;
-      end++;
-    }
-    if((end - start) > 500){
-      continue;
-    }
-    
-    
+    if(target->offs[tp].count > max) continue;
+
+    tstart = target->offs[tp].offset;
+    tend   = tstart + target->offs[tp].count - 1;
+
+    qstart = query->offs[i].offset;
+    qend   = qstart + query->offs[i].count -1;
+
     uint32_t t, q;
 
-    q = (query->data[i].load>>32);
+    assert(query->offs[i].min == target->offs[tp].min);
 
-    for(j = start; j <= end; j++){
+    for(j = qstart; j < qend; j++){
+      q = (query->data[j].load>>32);
+      for(k = tstart; k < tend; k++){
 
-      t = (target->data[j].load>>32);
+        assert(query->data[j].min == target->data[k].min);
 
-    //  fprintf(stderr, "q: %i t: %i\n", q, t);
+        t = (target->data[k].load>>32);
+        printSeqNames(&query->names[q]);
+        printf("\t");
+        printSeqNames(&target->names[t]);
+        printf("\t");
+        printf("%i\t%i\t%i\t%i\n", (uint32_t)query->data[j].load>>1,
+        (uint32_t)target->data[k].load>>1, target->offs[tp].count, query->offs[i].count);
 
-      assert(q <= query->namelen && t <= target->namelen);
-
-      printSeqNames(&query->names[q]);
-      printf("\t");
-      printSeqNames(&target->names[t]);
-      printf("\t");
-      printf("%i\t%i\t%i\t%i\t%i\n",   (uint32_t)query->data[i].load>>1,
-      (uint32_t)target->data[j].load>>1, end - start +1,
-      (uint32_t)query->data[i].load & 1, (uint32_t)target->data[j].load & 1);
+      }
     }
   }
-
+  fprintf(stderr, "INFO: finished searching.\n");
   return 0;
 }
 
