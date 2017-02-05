@@ -83,23 +83,21 @@ int main(int argc, char *argv[])
 	}
 
 	struct ns * tDB = db_init();
-	struct ns * qDB = db_init();
 
 	loadOrBuild(tDB, argv[optind]);
 	optind++;
 
-	int nq = 0;
 	for (; optind < argc; optind++){
+		struct ns * qDB = db_init();
 		loadOrBuild(qDB, argv[optind]);
-		nq+=1;
+		search(tDB, qDB, globalOpts.max);
+		db_destroy(qDB);
 	}
 
-	if (nq > 0) search(tDB, qDB, globalOpts.max);
 
 	fprintf(stderr, "INFO: Done searching\n");
 
 	db_destroy(tDB);
-	if(nq > 0) db_destroy(qDB);
 
   return 0;
 }
