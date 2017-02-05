@@ -94,9 +94,6 @@ int main(int argc, char *argv[])
 		db_destroy(qDB);
 	}
 
-
-	fprintf(stderr, "INFO: Done searching\n");
-
 	db_destroy(tDB);
 
   return 0;
