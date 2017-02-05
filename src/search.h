@@ -93,8 +93,12 @@ for(i = 1; i < target->ulength; i++){
       for(k = tstart; k < tend; k++){
 
         assert(query->data[j].min == target->data[k].min);
+  //      printf("%i %i\n", q, query->namelen);
+        assert(q < query->namelen);
+
 
         t = (target->data[k].load>>32);
+        assert(t < target->namelen);
         printSeqNames(&query->names[q]);
         printf("\t");
         printSeqNames(&target->names[t]);
