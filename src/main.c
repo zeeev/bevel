@@ -16,6 +16,11 @@ int loadOrBuild(struct ns * mins, char * filename){
 	strcpy(db, filename);
 	strcat(db, ".midx");
 
+	if(access (filename, F_OK) == -1){
+			fprintf(stderr, "\nFATAL: One fasta file does not exist.\n       -d does not take an argument\n");
+			exit(1);
+		}
+
 	if(access (db, F_OK) != -1 ){
 				readDB(mins, filename);
 	}
