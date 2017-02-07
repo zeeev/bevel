@@ -41,6 +41,39 @@ void printSeqNames(struct seqName * sInfo){
 
 }
 
+int searchMissing(struct ns * target, struct ns * query, int max){
+
+  fprintf(stderr, "INFO: Searching %i by %i minimizers\n", target->length, query->length);
+
+  uint32_t i = 0;
+  uint32_t qstart = 0; uint32_t qend = 0;
+
+  uint32_t j = 0;
+
+  for(i = 1; i < query->ulength; i++){
+    assert(  query->offs[i-1].min < query->offs[i].min);
+  }
+  for(i = 1; i < target->ulength; i++){
+    assert(  target->offs[i-1].min < target->offs[i].min);
+  }
+
+  for( i = 0; i < query->ulength; i++){
+    int tp = custom_bsearch(target->offs, target->ulength, query->offs[i].min);
+    if(tp != -1) continue;
+
+     qstart = query->offs[i].offset;
+     qend   = qstart + query->offs[i].count -1;
+
+    for(j = qstart; j < qend; j++){
+      uint32_t q = (query->data[j].load>>32);
+      printSeqNames(&query->names[q]);
+      printf("%i\t%i\n", (uint32_t)query->data[j].load>>1, query->offs[i].count);
+    }
+  }
+  return 0;
+}
+
+
 /**
  * Loops over the query database structure and binary searches
  * the target structure for the matching minimizer.  It prints

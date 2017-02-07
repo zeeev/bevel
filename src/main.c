@@ -5,6 +5,7 @@
 
 struct opts{
 	int dump;
+	int missing;
 	int window;
 	int ksize;
 	int max;
@@ -36,7 +37,8 @@ int loadOrBuild(struct ns * mins, char * filename){
 int main(int argc, char *argv[])
 {
 
-	globalOpts.dump   =  0  ;
+	globalOpts.missing = 0   ;
+	globalOpts.dump   = 0   ;
 	globalOpts.window = 100 ;
 	globalOpts.ksize  = 17  ;
 	globalOpts.max    = 500 ;
@@ -45,8 +47,13 @@ int main(int argc, char *argv[])
 
 	static char usage[] = "usage: bevel [options] <target.fa> <query.fa> <query.fa ... \n\n options:\n    -d <FLAG> Write databases to files\n    -w <INT>  Save every Nth minimizer [100]\n    -k <INT>  Minimizer size (up to 32) [17] \n    -n <INT>  Filter high frequeny minimizers [500]\n";
 
-	while ((c = getopt(argc, argv, "dhw:k:n:")) != -1){
+	while ((c = getopt(argc, argv, "dhw:k:n:m")) != -1){
 				switch (c) {
+					case 'm':
+					{
+							globalOpts.missing = 1;
+							break;
+					}
 					case 'n':
 					{
 						globalOpts.max = atoi(optarg);
@@ -95,7 +102,12 @@ int main(int argc, char *argv[])
 	for (; optind < argc; optind++){
 		struct ns * qDB = db_init();
 		loadOrBuild(qDB, argv[optind]);
-		search(tDB, qDB, globalOpts.max);
+		if(globalOpts.missing == 1){
+			searchMissing(tDB, qDB, globalOpts.max);
+		}
+		else{
+			search(tDB, qDB, globalOpts.max);
+		}
 		db_destroy(qDB);
 	}
 
