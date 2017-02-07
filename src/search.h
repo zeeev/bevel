@@ -67,6 +67,7 @@ int searchMissing(struct ns * target, struct ns * query, int max){
     for(j = qstart; j < qend; j++){
       uint32_t q = (query->data[j].load>>32);
       printSeqNames(&query->names[q]);
+      printf("\t");
       printf("%i\t%i\n", (uint32_t)query->data[j].load>>1, query->offs[i].count);
     }
   }
